@@ -20,16 +20,20 @@ public class PostController {
     public List<Post> getAll(){
         List<Post> list = postService.getAll();
         return list.stream().map(p -> {
-            p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PostController.class).getOnePost(p.getId())).withSelfRel());
+            addHyperLink(p);
             return p;
         }).collect(Collectors.toList());
+    }
+
+    private void addHyperLink(Post p){
+        p.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PostController.class).getOnePost(p.getId())).withSelfRel());
     }
 
 
     @GetMapping("/{id}")
     public Post getOnePost(@PathVariable long id){
         Post post = postService.getOne(id);
-        post.add(WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(PostController.class).getOnePost(id)).withSelfRel());
+        addHyperLink(post);
         return post;
     }
 
