@@ -32,6 +32,10 @@ public class ProductController {
 	public String saveProduct(Product product) {
 		System.out.println(product);
 
+		Category category = categoryService.getCategory(product.getCategory().getId());
+		product.setCategory(category);
+
+
 		productService.save(product);
 		return "ProductDetails";
 	}
