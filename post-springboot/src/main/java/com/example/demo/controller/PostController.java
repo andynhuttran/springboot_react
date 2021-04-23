@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,13 +39,14 @@ public class PostController {
     }
 
     @PostMapping
-    public void addPost(@RequestBody Post p){
+    public void addPost(@Valid @RequestBody Post p){
+        System.out.println(p);
         postService.add(p);
     }
 
-    @DeleteMapping("/{id}")
-    public void addPost(@PathVariable long id){
-        postService.delete(id);
+    @DeleteMapping("/{Id}")
+    public void addPost(@PathVariable long Id){
+        postService.delete(Id);
     }
 
 
