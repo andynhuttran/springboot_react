@@ -11,13 +11,12 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="com.students" />
-	<mvc:annotation-driven validator="validator" />
 
+	<mvc:annotation-driven validator="validator" />
 	<bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:errorMessages" />
 	</bean>
-
 	<bean id="validator"
 		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="validationMessageSource" ref="messageSource" />
